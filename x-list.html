@@ -1,0 +1,52 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/core-item/core-item.html">
+<link rel="import" href="bower_components/core-menu/core-menu.html">
+
+<polymer-element name="x-list" attributes="data">
+    <template>
+
+        <style>
+        :host {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+        }
+
+        core-item {
+            padding-left: 1em;
+            
+            -webkit-transition: box-shadow 0.5s ease;
+            transition: box-shadow 0.5s ease;
+
+        }
+        core-item.core-selected {
+
+            box-shadow: 1px 6px 17px -2px rgba(131, 130, 118, 0.64);
+            border-radius: 5px;
+            background-color: beige;
+        }
+        </style>
+
+        <core-menu>
+            <template repeat="{{item in data}}">
+                <core-item label="{{item.name}}">
+                </core-item>
+            </template>
+        </core-menu>
+    </template>
+    <script>
+    function randActivityName() {
+        var acts = ["Abdomen MRI", "Cholesterol, Total", "FACT - Neurotoxicity [SELECT *FACG]", "Otolaryngologic Examination", "Water-Displacement Volumetry; Foot", "Serum Pregnancy Test - Quantitative"];
+        return acts[Math.floor(Math.random() * acts.length)];
+    }
+
+    Polymer({
+        created: function() {
+            this.data = [];
+            for (var i = 0; i < 25; i++) {
+                this.data.push({
+                    name: randActivityName()
+                })
+            }
+        }
+    });
+    </script>
+</polymer-element>

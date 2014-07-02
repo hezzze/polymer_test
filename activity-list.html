@@ -1,0 +1,15 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="activity-el.html">
+
+<polymer-element name="activity-list" attributes="activities">
+    <template>
+        <div layout vertical>
+            <template repeat="{{activity in activities}}">
+                <activity-el name="{{activity.name}}" quantity="{{activity.quantity}}"></activity-el>
+            </template>
+        </div>
+    </template>
+    <script>
+    Polymer({});
+    </script>
+</polymer-element>

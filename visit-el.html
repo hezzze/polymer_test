@@ -1,0 +1,40 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="activity-list.html">
+
+<polymer-element name="visit-el" attributes="name">
+    <template>
+        <div layout horizontal center>
+            <paper-icon-button icon="view-list" on-tap="{{showmore}}"></paper-icon-button>
+            <div flex>
+                <a href="http://google.com">
+                    <h4>{{name}}</h4>
+                </a>
+            </div>
+        </div>
+        <core-collapse id="collapse">
+            <activity-list activities="{{activities}}"></activity-list>
+        </core-collapse>
+    </template>
+    <script>
+
+    function randActivityName() {
+        var acts = ["Abdomen MRI", "Cholesterol, Total", "FACT - Neurotoxicity [SELECT *FACG]", "Otolaryngologic Examination", "Water-Displacement Volumetry; Foot", "Serum Pregnancy Test - Quantitative"];
+        return acts[Math.floor(Math.random()*acts.length)];
+    }
+
+    Polymer({
+        showmore: function() {
+            this.$.collapse.toggle();
+        },
+
+        created: function () {
+            this.activities = [];
+            for (var i = 0; i < 25; i++) {
+                this.activities.push({
+                    name: randActivityName()
+                })
+            }
+        }
+    });
+    </script>
+</polymer-element>
